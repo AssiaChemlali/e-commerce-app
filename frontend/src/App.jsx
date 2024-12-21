@@ -9,10 +9,14 @@ import Contact from './pages/Contact'
 import Cart from './pages/Cart'
 import AdminPanel from './pages/AdminPanel'
 import Login from './pages/Login'
+import Product from './pages/Product'
+import PlaceOrder from './pages/PlaceOrder'
+import Orders from './pages/Orders'
 const App = () => {
   return (
-  <div className='container p-5 '>
-    <Navbar/>
+  <div className='container px-4  sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+      <Navbar/>
+
       <Routes >
         <Route path="/"  element={<Home/>}/>
         <Route path="/collection"  element={<Collection/>}/>
@@ -21,8 +25,12 @@ const App = () => {
         <Route path="/admin"  element={<AdminPanel/>}/>
         <Route path="/cart"  element={<Cart/>}/>
         <Route path="/login"  element={<Login/>}/>
+        <Route path="/product/:id"  element={<Product/>}/>
+        <Route path="/place-order" element={<PlaceOrder/>}/>
+        <Route path="/orders" element={<Orders/>}/>
       </Routes>
-    <Footer/>
+
+      <Footer/>
   </div>
   )
 }
