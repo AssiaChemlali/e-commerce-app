@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Orders = () => {
+const AdminPanel = () => {
   return (
     <div>
-      orders
+      admin
     </div>
   )
 }
 
-export default Orders
+export default AdminPanel
