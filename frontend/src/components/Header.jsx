@@ -10,11 +10,14 @@ const Header = () => {
               <span className='h-[2px] w-8 md:w-11 bg-black block'></span>
               <span className='uppercase font-semibold'>Our bestsellers</span>
             </p>
-            <h1 className='sm:text-3xl lg:text-5xl my-4 capitalize font-prata'>latest arrivals</h1>
+
+            <h1 className='text-3xl lg:text-5xl my-4 capitalize prata-regular leading-relaxed'>latest arrivals</h1>
+
             <p className='flex  items-center gap-x-2'>
               <span className='uppercase font-semibold text-sm'>shop now</span>
               <span className='h-[2px] w-[20px] bg-black block'></span>
             </p>
+
         </div>
        </div>
 

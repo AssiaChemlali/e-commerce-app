@@ -6,9 +6,7 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        "prata": ["Prata", "serif"]
-    }
+     
     },
   },
   plugins: [],
