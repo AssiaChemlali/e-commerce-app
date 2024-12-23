@@ -35,7 +35,7 @@ const Navbar = () => {
         <ul className='hidden sm:flex items-center gap-3 capitalize '>
           {links?.map((link,index)=>{
             return(
-              <li className='' key={index}>
+              <li className='uppercase text-sm ' key={index}>
               <NavLink 
               to={link.href} >
               <span>{link.label}</span>
