@@ -14,7 +14,7 @@ import PlaceOrder from './pages/PlaceOrder'
 import Orders from './pages/Orders'
 const App = () => {
   return (
-  <div className='container px-4  sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+  <div className='px-4  sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
       <Navbar/>
 
       <Routes >
