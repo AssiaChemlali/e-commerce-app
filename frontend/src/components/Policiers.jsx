@@ -23,9 +23,9 @@ const Policiers = () => {
   return (
     <div className='py-20 grid sm:grid-cols-3'>
       {
-        policiersData.map((policy)=>{
+        policiersData.map((policy,index)=>{
           return(
-            <div className='text-center'>
+            <div className='text-center' key={index}>
               <img src={policy.image} alt="" className='w-10 m-auto object-cover' />
               <h6 className='font-bold text-base mt-4 text-gray-700'>{policy.title}</h6>
               <p className='text-base text-gray-400'>{policy.desc}</p>
