@@ -15,7 +15,7 @@ const BestSellers = () => {
   return (
     <div className='flex  flex-col items-center'>
       <Heading  title="BEST SELLERS"/>
-      <p className='text-base text-slate-700  text-center w-[500px] mb-10'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+      <p className='text-base text-gray-600 text-center w-3/4 m-auto mb-10'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
 
 
       <div className='grid grid-cols-2 sm:grid-cols-4 gap-5 lg:grid-cols-5'>
