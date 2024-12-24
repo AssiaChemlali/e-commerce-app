@@ -4,13 +4,14 @@ import { useContext } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import Heading from './Heading'
 
-const ListProducts = () => {
+const LatestCollections = () => {
   const {products}=useContext(ShopContext)
   const [latestProduct,setLatestProduct]=useState([])
 
   useEffect(()=>{
-         setLatestProduct(products.slice(0,10))
+      setLatestProduct(products.slice(0,10))
   },[])
+
   return (
 <div className='flex  flex-col items-center'>
     <Heading  title="LATEST COLLECTIONS"/>
@@ -31,4 +32,4 @@ const ListProducts = () => {
   )
 }
 
-export default ListProducts
+export default LatestCollections
