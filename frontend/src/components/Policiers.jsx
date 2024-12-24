@@ -8,7 +8,7 @@ import { assets } from '../assets/assets'
     desc:'We offer hassle free exchange policy'
   },
   {
-    image:assets.profile_icon,
+    image:assets.quality_icon,
     title:'7 Days Return Policy',
     desc:'We provide 7 days free return policy'
   },
@@ -21,14 +21,14 @@ import { assets } from '../assets/assets'
  ]
 const Policiers = () => {
   return (
-    <div className='py-20 grid grid-cols-3'>
+    <div className='py-20 grid sm:grid-cols-3'>
       {
         policiersData.map((policy)=>{
           return(
             <div className='text-center'>
-            <img src={policy.image} alt="" className='w-10 m-auto' />
-            <h6 className='font-bold text-base mt-4 text-gray-700'>{policy.title}</h6>
-            <p className='text-base text-gray-400'>{policy.desc}</p>
+              <img src={policy.image} alt="" className='w-10 m-auto object-cover' />
+              <h6 className='font-bold text-base mt-4 text-gray-700'>{policy.title}</h6>
+              <p className='text-base text-gray-400'>{policy.desc}</p>
           </div>
           )
         })
