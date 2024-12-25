@@ -8,55 +8,46 @@ const Collection = () => {
   const {products}=useContext(ShopContext)
   const [collection,setCollection]=useState([])
   const[sortBy,setSortBy]=useState('relavent')
-  const[productCat,setproductCat]=useState([])
+
   const[category,setCategory]=useState([])
   const[type,setType]=useState([])
 
-  useEffect(()=>{
-     setCollection(products)
-  },[])
+  function applyFilter(){
+    let items=[...products]
+    if(category.length > 0){
+      items= items.filter((item)=>category.includes(item.category))
+    }
+    if(type.length > 0){
+      items= items.filter((item)=>type.includes(item.subCategory))
+    }
+    setCollection(items)
+  }
+
+  function sortProducts(){
+    let items=[...collection]
+
+    if(sortBy==="high-low"){
+      setCollection(items.sort((a, b) => b.price - a.price))
+    } else if(sortBy==="low-high"){
+        setCollection(items.sort((a, b) => a.price - b.price))
+    } else{
+       applyFilter()
+    }
+  }
 
   useEffect(()=>{
-  console.log(category)
+   applyFilter() 
+ },[category,type])
 
-   if(category.length > 0){
-     category?.map((cat)=>{
-    
-      let array= products.filter((item)=>item.category===cat)
-      
-      //console.log(array)
-      setproductCat(prev => [...prev, ...array]);
-     
-     })
-    console.log("productcat:",productCat)
 
-   }
- },[category])
-
+  useEffect(()=>{
+    sortProducts()
+  },[sortBy])
+  
 
 
   function handleSelect(event){
-      setSortBy(event.target.value)
-
-      if(sortBy==="high-low"){
-      
-        let items =products.sort((a, b) => b.price - a.price);
-        
-        setCollection(items)
-     
-      } else if(sortBy==="low-high"){
-
-        let items  =products.sort((a, b) => a.price - b.price);
-       
-        setCollection(items)
-       
-      } else if(sortBy==="relavent"){
-        let items=products
-        setCollection(items)
-        
-      }
-
-     
+      setSortBy(event.target.value)     
   }
 
   function handleCategory(cat){
@@ -66,13 +57,8 @@ const Collection = () => {
     }else{
       setCategory(prevCategory=>[...prevCategory,cat])
     }
-
- 
-    
-
- 
-
   }
+
   function handleType(subCategory){
     if(type.includes(subCategory)){
       setType(prev=> prev.filter((item)=>item!==subCategory)
@@ -81,8 +67,8 @@ const Collection = () => {
       setType(prev=>[...prev,subCategory])
     }
   }
-  
-   console.log(type)
+
+
   return (
     
      
