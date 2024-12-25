@@ -6,10 +6,13 @@ import { useEffect } from 'react'
 import ProductItem from '../components/ProductItem'
 import SearchBox from '../components/SearchBox'
 const Collection = () => {
-  const {products}=useContext(ShopContext)
-  const {setOpenSearchBox,openSearchBox}=useContext(ShopContext)
+  const {
+    products,
+    searchValue,
+    setOpenSearchBox,
+    openSearchBox}=useContext(ShopContext)
 
- const {searchValue}=useContext(ShopContext)
+
   const [collection,setCollection]=useState([])
 
   const[sortBy,setSortBy]=useState('relavent')
@@ -19,11 +22,20 @@ const Collection = () => {
 
   function applyFilter(){
     let items=[...products]
+
+    if(searchValue ){
+        items=items.filter(item=>item.name.toLowerCase().includes(searchValue.toLowerCase()))
+  
+    } 
+    
     if(category.length > 0){
       items= items.filter((item)=>category.includes(item.category))
+      console.log(category[0])
     }
+
     if(type.length > 0){
       items= items.filter((item)=>type.includes(item.subCategory))
+      console.log(type[0])
     }
     setCollection(items)
   }
@@ -44,21 +56,12 @@ const Collection = () => {
 
   useEffect(()=>{
    applyFilter() 
- },[category,type])
+ },[category,type,searchValue])
 
 
   useEffect(()=>{
     sortProducts()
   },[sortBy])
-
-  useEffect(()=>{
-    console.log(searchValue)
-   
-    let items= [...collection]
-    items=items.filter(item=>item.name.toLowerCase().includes(searchValue.toLowerCase()))
-     setCollection(items)
-
-  },[searchValue])
 
 
 
