@@ -5,57 +5,111 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import ProductItem from '../components/ProductItem'
 const Collection = () => {
-  const {products}=useContext( ShopContext)
+  const {products}=useContext(ShopContext)
   const [collection,setCollection]=useState([])
-  const[sort,setSort]=useState('relavent')
-  function handleChange(){
+  const[sortBy,setSortBy]=useState('relavent')
+  const[productCat,setproductCat]=useState([])
+  const[category,setCategory]=useState([])
+  const[type,setType]=useState([])
 
-  }
   useEffect(()=>{
      setCollection(products)
   },[])
 
+  useEffect(()=>{
+  console.log(category)
+
+   if(category.length > 0){
+     category?.map((cat)=>{
+    
+      let array= products.filter((item)=>item.category===cat)
+      
+      //console.log(array)
+      setproductCat(prev => [...prev, ...array]);
+     
+     })
+    console.log("productcat:",productCat)
+
+   }
+ },[category])
+
+
+
   function handleSelect(event){
-      const sort= event.target.value
-      console.log(sort)
-      if(sort==="high"){
-        let items = products;
-        items.sort((a, b) => b.price - a.price);
+      setSortBy(event.target.value)
+
+      if(sortBy==="high-low"){
+      
+        let items =products.sort((a, b) => b.price - a.price);
+        
         setCollection(items)
-      } else if(sort==="low"){
-        let items = products;
-        items.sort((a, b) => a.price - b.price);
+     
+      } else if(sortBy==="low-high"){
+
+        let items  =products.sort((a, b) => a.price - b.price);
+       
         setCollection(items)
-      } else if(sort==="relavent"){
-        setCollection(products)
+       
+      } else if(sortBy==="relavent"){
+        let items=products
+        setCollection(items)
+        
       }
 
-      console.log(collection[0].price)
+     
   }
 
+  function handleCategory(cat){
+    if(category.includes(cat)){
+      setCategory(prevCategory=> prevCategory.filter((item)=>item!==cat)
+      )
+    }else{
+      setCategory(prevCategory=>[...prevCategory,cat])
+    }
+
+ 
+    
+
+ 
+
+  }
+  function handleType(subCategory){
+    if(type.includes(subCategory)){
+      setType(prev=> prev.filter((item)=>item!==subCategory)
+      )
+    }else{
+      setType(prev=>[...prev,subCategory])
+    }
+  }
+  
+   console.log(type)
   return (
-    <div className=''>
-      <hr className='mb-5 pt-10'/>
-      <div className='flex gap-7 justify-between'>
+    
+     
+      <div className='flex flex-col sm:flex-row gap-7 justify-between border-t pt-10'>
         {/* fiters */}
 
-        <div className='w-1/3'>
-          <h2 className='uppercase mb-5 text-xl'>Filters</h2>
-          <div className='border flex flex-col p-5 mb-5'>
-            <p className='uppercase text-base mb-4 font-medium'>CATEGORIES</p>
+        <div className='w-full sm:w-1/3'>
+          <h2 className='uppercase mb-5 text-xl  cursor-pointer'>Filters</h2>
 
-            <label className='text-gray-500 flex gap-2 font-normal text-sm'>
-              <input type="checkbox" onChange={handleChange} className=''/>
+          <div className='border flex flex-col p-5 mb-5'>
+            <p className='uppercase text-sm mb-4 font-medium'>CATEGORIES</p>
+
+            <label className='text-gray-700 flex gap-2 font-light text-sm'>
+              <input 
+              type="checkbox" 
+              onChange={()=>handleCategory('Men')} className=''/>
             Men
             </label>
 
-            <label className='text-gray-500 flex gap-2 font-normal text-sm'>
-              <input type="checkbox" onChange={handleChange}/>
+            <label className='text-gray-500 flex gap-2 font-light text-sm'>
+              <input type="checkbox" 
+             onChange={()=>handleCategory('Women')}/>
             Women
             </label>
 
-            <label className='text-gray-500 flex gap-2 font-normal text-sm'>
-              <input type="checkbox" onChange={handleChange}/>
+            <label className='text-gray-500 flex gap-2 font-light text-sm'>
+              <input type="checkbox" onChange={()=>handleCategory('Kids')}/>
             Kids
             </label>
 
@@ -65,17 +119,17 @@ const Collection = () => {
             <p className='uppercase text-base mb-4 font-medium'>TYPE</p>
 
             <label className='text-gray-500 flex gap-2 font-normal text-sm'>
-              <input type="checkbox" onChange={handleChange} className=''/>
+              <input type="checkbox" onChange={()=>handleType('Topwear')}  className=''/>
               Topwear
             </label>
 
             <label className='text-gray-500 flex gap-2 font-normal text-sm'>
-              <input type="checkbox" onChange={handleChange}/>
+              <input type="checkbox" onChange={()=>handleType('Bottomwear')} />
               Bottomwear
             </label>
 
             <label className='text-gray-500 flex gap-2 font-normal text-sm'>
-              <input type="checkbox" onChange={handleChange}/>
+              <input type="checkbox" onChange={()=>handleType('Winterwear')}/>
               Winterwear
             </label>
 
@@ -83,16 +137,17 @@ const Collection = () => {
         </div>
 
         {/* collections */}
-        <div className='w-full mb-10'>
+        <div className='w-full mb-10 flex-1'>
             <div className='flex flex-row justify-between'>
             <Heading title="ALL COLLECTIONS"/>
 
-              <select name="sort" id="" className='border py-0' onChange={handleSelect}>
-                <option value="relavent">sort by:Relavent</option>
-                <option value="low">sort by:Low to high</option>
-                <option value="high">sort by:High to Low</option>
-              </select>
+            <select name="sort" id="" className='border py-0' onChange={handleSelect}>
+              <option value="relavent">sort by:Relavent</option>
+              <option value="low-high">sort by:Low to high</option>
+              <option value="high-low">sort by:High to Low</option>
+            </select>
             </div>
+
             <div className='mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5'>
                {
                 collection.map((item,index)=>{
@@ -109,7 +164,6 @@ const Collection = () => {
 
       </div>
 
-    </div>
  
   )
 }
