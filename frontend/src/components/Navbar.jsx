@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {Link,NavLink} from 'react-router-dom'
 import {assets } from "../assets/assets"
+import SearchBox from './SearchBox'
+import { ShopContext } from '../context/ShopContext'
 
 
 const Navbar = () => {
   const [visible,setVisible]=useState(false)
+  const {setOpenSearchBox}=useContext(ShopContext)
+ 
+
    const links=[
       {
         label:"Home",
@@ -27,8 +32,11 @@ const Navbar = () => {
         href:"/admin"
       },
    ]
+  
 
   return (
+    <>
+    
     <nav className='flex items-center justify-between my-10 relative'>
        <NavLink to="/" className='w-36 object-obtain'><img src={assets.logo} alt="FOREVER" /></NavLink>
 
@@ -46,12 +54,11 @@ const Navbar = () => {
           })}
         
         </ul>
-      
-
-
+    
        <div className='flex items-center gap-3'>
-          <Link to="/collection">
-          <img src={assets.search_icon} alt="" className='w-5 cursor-pointer'/></Link>
+          <Link to="/collection" onClick={()=>setOpenSearchBox(true)}>
+          <img src={assets.search_icon} alt="" className='w-5 cursor-pointer'/>
+          </Link>
 
           <div className='group relative'>
             <img src={assets.profile_icon} alt="" className='w-5'/>
@@ -96,6 +103,15 @@ const Navbar = () => {
               </ul>)}
        </div>
     </nav>
+
+    {/* {openSearchBox && (
+
+  <div className='bg-gray-100 py-5 w-full border-t border-b flex  items-center justify-center gap-3'>
+  <input type="text" name="" id="search"  className=' rounded-full  p-2 border px-5 text-base w-2/3' placeholder='Search' onChange={(e)=>setSearchValue(e.target.value)}/>
+  <span className='text-2xl text-gray-600 cursor-pointer' onClick={()=>setOpenSearchBox(false)}>x</span>
+  </div>
+    )} */}
+    </>
   )
 }
 
