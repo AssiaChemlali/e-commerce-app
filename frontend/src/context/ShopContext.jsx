@@ -22,7 +22,6 @@ export const ShopContextProvider=(props)=>{
        console.log("before update",cartItemsCopy[index].quantity)
             setCartItems(prev=>{
               const updateItems=[...prev]
-            
               updateItems[index].quantity += 1
               console.log("after update",updateItems[index].quantity)
               return updateItems
@@ -32,6 +31,7 @@ export const ShopContextProvider=(props)=>{
         console.log("add new")
         const item={
           id:id,
+          image:productItem.image[0],
           name:productItem.name,
           price:productItem.price,
           size:size,

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {Link,NavLink} from 'react-router-dom'
 import {assets } from "../assets/assets"
 import SearchBox from './SearchBox'
@@ -7,9 +7,9 @@ import { ShopContext } from '../context/ShopContext'
 
 const Navbar = () => {
   const [visible,setVisible]=useState(false)
-  const {setOpenSearchBox}=useContext(ShopContext)
+  const {setOpenSearchBox,cartItems}=useContext(ShopContext)
+  const [nbProducts,setNbProducts]=useState(0)
  
-
    const links=[
       {
         label:"Home",
@@ -32,6 +32,11 @@ const Navbar = () => {
         href:"/admin"
       },
    ]
+
+   useEffect(()=>{
+     const totalProducts=cartItems.reduce((result,item)=>result + item.quantity,0)
+     setNbProducts(totalProducts)
+   },[cartItems])
   
 
   return (
@@ -78,7 +83,7 @@ const Navbar = () => {
               alt="" 
               className='w-5 min-w-5' />
               <p className='absolute right-[-5px] bottom-[-5px]
-              bg-black text-white text-center rounded-full w-4 h-4 leading-4 text-sm'>0</p>
+              bg-black text-white text-center rounded-full w-4 h-4 leading-4 text-sm'>{nbProducts}</p>
             </Link>
 
             <button onClick={()=>setVisible(!visible)}>

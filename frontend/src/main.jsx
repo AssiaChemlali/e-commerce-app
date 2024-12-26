@@ -13,8 +13,7 @@ createRoot(document.getElementById('root')).render(
 
     </ShopContextProvider>
     
-   
- 
+  
   
   </StrictMode>,
 )
