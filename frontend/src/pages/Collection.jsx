@@ -25,17 +25,16 @@ const Collection = () => {
 
     if(searchValue ){
         items=items.filter(item=>item.name.toLowerCase().includes(searchValue.toLowerCase()))
-  
     } 
     
     if(category.length > 0){
       items= items.filter((item)=>category.includes(item.category))
-      console.log(category[0])
+     
     }
 
     if(type.length > 0){
       items= items.filter((item)=>type.includes(item.subCategory))
-      console.log(type[0])
+    
     }
     setCollection(items)
   }
@@ -51,8 +50,6 @@ const Collection = () => {
        applyFilter()
     }
   }
-
-
 
   useEffect(()=>{
    applyFilter() 

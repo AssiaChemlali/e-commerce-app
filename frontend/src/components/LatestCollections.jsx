@@ -13,7 +13,7 @@ const LatestCollections = () => {
   },[])
 
   return (
-<div className='flex  flex-col items-center'>
+<div className='flex  flex-col items-center my-10'>
     <Heading  title="LATEST COLLECTIONS"/>
     <p className='text-base text-slate-700  text-center w-[500px] mb-10'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
 

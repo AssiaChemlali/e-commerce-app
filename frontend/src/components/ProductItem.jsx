@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const ProductItem = ({product}) => {
   return (
     <Link 
-    to={`/product/:${product._id}`} 
+    to={`/product/${product._id}`} 
     className='cursor-pointer' 
     key={product.id}>
         <img src={product.image} alt="" />

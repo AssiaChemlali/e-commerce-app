@@ -13,7 +13,7 @@ const BestSellers = () => {
   },[])
 
   return (
-    <div className='flex  flex-col items-center'>
+    <div className='flex  flex-col items-center my-10'>
       <Heading  title="BEST SELLERS"/>
       <p className='text-base text-gray-600 text-center w-3/4 m-auto mb-10'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
 
