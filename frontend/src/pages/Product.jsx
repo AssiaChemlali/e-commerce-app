@@ -8,7 +8,7 @@ import RelatedProducts from '../components/RelatedProducts';
 const Product = () => {
   const param=useParams()
   const [product,setProduct]=useState()
-  const {products,currency}=useContext(ShopContext)
+  const {products,currency,addToCart,cartItems}=useContext(ShopContext)
   const [size,setSize]=useState()
   const [image,setImage]=useState()
   const [relatedProducts,setRelatedProducts]=useState([])
@@ -29,8 +29,8 @@ const Product = () => {
   },[param,products])
 
   function handleAddToCart(){
-    if(size){
-     
+      if(size){
+         addToCart(product._id,size)
     }else{
       toast.error("Select Product size", {
         position: "top-right",
@@ -106,11 +106,9 @@ const Product = () => {
         </div>
       </div>
 
-      <DescriptionReview/>
-     <RelatedProducts relatedProducts={relatedProducts}/>
-
-
-      <ToastContainer theme='light' />
+    <DescriptionReview/>
+    <RelatedProducts relatedProducts={relatedProducts}/>
+    <ToastContainer theme='light' />
     </>
   )
   
