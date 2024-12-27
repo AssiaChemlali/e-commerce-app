@@ -6,7 +6,7 @@ const ProductItem = ({product}) => {
     to={`/product/${product._id}`} 
     className='cursor-pointer' 
     key={product.id}>
-        <img src={product.image} alt="" />
+        <img src={product.image[0]} alt="" />
         <p className='text-sm my-2'>{product.name}</p>
         <p className='font-semibold text-sm'>{product.price} $</p>
     </Link>

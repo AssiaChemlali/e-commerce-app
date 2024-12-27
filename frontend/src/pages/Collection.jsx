@@ -92,7 +92,7 @@ const Collection = () => {
     <div className='flex flex-col sm:flex-row gap-7 justify-between border-t pt-10'>
       {/* fiters */}
 
-      <div className='w-full sm:w-1/3'>
+      <div className='w-full sm:w-60'>
         <h2 className='uppercase mb-5 text-xl  cursor-pointer'>Filters</h2>
 
         <div className='border flex flex-col p-5 mb-5'>

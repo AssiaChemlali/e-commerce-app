@@ -29,13 +29,13 @@ const Product = () => {
   },[param,products])
 
   function handleAddToCart(){
-      if(size){
-         addToCart(product._id,size)
-    }else{
-      toast.error("Select Product size", {
-        position: "top-right",
-      });
-    }
+    //   if(size){
+    //      addToCart(product._id,size)
+    // }else{
+    //   toast.error("Select Product size", {
+    //     position: "top-right",
+    //   });
+    // }
   }
 
 
@@ -60,7 +60,7 @@ const Product = () => {
             </div>
 
             <div className="w-full h-auto ">
-                <img src={image} alt="" />
+                <img src={image} alt="" className='object-fill	' />
             </div>
         </div>
 
@@ -94,7 +94,7 @@ const Product = () => {
             </ul>
 
             <button 
-            onClick={handleAddToCart}
+            onClick={()=>addToCart(product._id,size)}
             className='bg-black text-white uppercase py-3 px-5  mt-4 text-sm'>add to cart</button>
             <hr  className='mt-8 sm:w-4/5 mb-5'/>
 

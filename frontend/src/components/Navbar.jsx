@@ -7,8 +7,8 @@ import { ShopContext } from '../context/ShopContext'
 
 const Navbar = () => {
   const [visible,setVisible]=useState(false)
-  const {setOpenSearchBox,cartItems}=useContext(ShopContext)
-  const [nbProducts,setNbProducts]=useState(0)
+  const {setOpenSearchBox,getCartCount}=useContext(ShopContext)
+ 
  
    const links=[
       {
@@ -33,16 +33,12 @@ const Navbar = () => {
       },
    ]
 
-   useEffect(()=>{
-     const totalProducts=cartItems.reduce((result,item)=>result + item.quantity,0)
-     setNbProducts(totalProducts)
-   },[cartItems])
-  
+ 
 
   return (
     <>
     
-    <nav className='flex items-center justify-between my-10 relative'>
+    <nav className='flex items-center justify-between my-5 relative'>
        <NavLink to="/" className='w-36 object-obtain'><img src={assets.logo} alt="FOREVER" /></NavLink>
 
         <ul className='hidden sm:flex items-center gap-3 capitalize '>
@@ -83,7 +79,7 @@ const Navbar = () => {
               alt="" 
               className='w-5 min-w-5' />
               <p className='absolute right-[-5px] bottom-[-5px]
-              bg-black text-white text-center rounded-full w-4 h-4 leading-4 text-sm'>{nbProducts}</p>
+              bg-black text-white text-center rounded-full w-4 h-4 leading-4 text-sm'>{getCartCount()}</p>
             </Link>
 
             <button onClick={()=>setVisible(!visible)}>
