@@ -8,7 +8,7 @@ const CartTotal = () => {
 
 
   return (
-    <div className='my-20 w-full'>
+    <div className='mt-20 w-full'>
         <Heading title="CART TOTALS"/>
         <ul className='mb-5'>
           <li className='border-b py-2 flex capilatize text-sm'>
@@ -25,9 +25,7 @@ const CartTotal = () => {
           </li>
         </ul>
 
-        <Link 
-        to='/place-order'
-        className='bg-black text-white py-2 px-5 uppercase text-sm  '>proceed to checkout</Link>
+       
       </div>
   )
 }

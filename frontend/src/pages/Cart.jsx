@@ -3,7 +3,7 @@ import Heading from '../components/Heading'
 import { ShopContext } from '../context/ShopContext'
 import CartTotal from '../components/CartTotal';
 import { assets } from '../assets/assets';
-
+import { Link } from 'react-router-dom';
 const Cart = () => {
   const {cartItems,currency,updateQuantity}=useContext(ShopContext)
   const [cart,setCart]=useState([])
@@ -14,7 +14,7 @@ const Cart = () => {
 
 
   return (
-    <div className='text-left border-t pt-10'>
+    <div className='text-left border-t py-10'>
       <Heading title="YOUR CART"/>
 
       {cart.length >0 
@@ -51,6 +51,9 @@ const Cart = () => {
       
 
      <CartTotal  />
+     <Link 
+        to='/place-order'
+        className='bg-black text-white py-2 px-5 uppercase text-sm  '>proceed to checkout</Link>
     </div>
   )
 }
