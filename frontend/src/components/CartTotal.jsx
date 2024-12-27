@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Heading from './Heading'
 import { ShopContext } from '../context/ShopContext'
+
+import { Link } from 'react-router-dom'
 const CartTotal = () => {
-  const {delivery_fee,cartItems,currency,getCartAmout}=useContext(ShopContext)
+  const {delivery_fee,currency,getCartAmout}=useContext(ShopContext)
 
 
   return (
-    <div className='my-20 sm:w-1/2'>
+    <div className='my-20 w-full'>
         <Heading title="CART TOTALS"/>
-        <ul className=''>
+        <ul className='mb-5'>
           <li className='border-b py-2 flex capilatize text-sm'>
             <span> Subtotal</span>
             <span className='ml-auto'>{currency} {getCartAmout().subtotal}.00</span>
@@ -23,7 +25,9 @@ const CartTotal = () => {
           </li>
         </ul>
 
-        <button className='bg-black text-white py-2 px-5 uppercase text-sm mt-5 '>proceed to checkout</button>
+        <Link 
+        to='/place-order'
+        className='bg-black text-white py-2 px-5 uppercase text-sm  '>proceed to checkout</Link>
       </div>
   )
 }
