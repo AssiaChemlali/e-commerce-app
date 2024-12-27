@@ -70,7 +70,20 @@ export const ShopContextProvider=(props)=>{
     return totalQuantity
   }
 
+  function getCartAmout(){
+
+    let subtotal=0
+    let total=0
+
+    if(cartItems.length > 0){
+      subtotal=cartItems?.reduce((result,item)=>result + item.price * item.quantity,0)
+       total=subtotal + delivery_fee
+      
+    }
+    return {subtotal,total}
+  }
   useEffect(()=>{
+    
   },[cartItems])
 
 
@@ -85,7 +98,8 @@ export const ShopContextProvider=(props)=>{
     addToCart,
     getCartCount,
     updateQuantity,
-    delivery_fee
+    delivery_fee,
+    getCartAmout
 
   }
 
