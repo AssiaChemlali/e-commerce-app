@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Heading from '../components/Heading'
 import { ShopContext } from '../context/ShopContext'
-import { RiDeleteBin6Line } from "react-icons/ri";
 import CartTotal from '../components/CartTotal';
 import { assets } from '../assets/assets';
 
@@ -15,12 +14,12 @@ const Cart = () => {
 
 
   return (
-    <div className='text-left'>
+    <div className='text-left border-t pt-10'>
       <Heading title="YOUR CART"/>
-      <div className="flex flex-col border-t mt-5">
-        {cart?.map((item,index)=>{
 
-         
+      {cart.length >0 
+      ?(<div className="flex flex-col border-t mt-5">
+        {cart?.map((item,index)=>{
           return(
             <div 
             className='flex flex-row  gap-5 py-3 border-b ' 
@@ -46,7 +45,10 @@ const Cart = () => {
             </div>
           )
         })}
-      </div>
+      </div>)
+       
+       :<p className='mt-10 capitalize text-red-400 text-xl  '> your cart is empty</p>}
+      
 
      <CartTotal  />
     </div>

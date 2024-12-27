@@ -21,7 +21,7 @@ const CartTotal = () => {
   }
 
   return (
-    <div className='mt-20 sm:w-1/2'>
+    <div className='my-20 sm:w-1/2'>
         <Heading title="CART TOTALS"/>
         <ul className=''>
           <li className='border-b py-2 flex capilatize text-sm'>
@@ -37,6 +37,7 @@ const CartTotal = () => {
             <span className='ml-auto font-bold'>{currency}{totalCart.total}</span>
           </li>
         </ul>
+        <button className='bg-black text-white py-2 px-5 uppercase text-sm mt-5 '>proceed to checkout</button>
       </div>
   )
 }
