@@ -4,9 +4,9 @@ import Newslatter from '../components/Newslatter'
 import {assets} from '../assets/assets'
 const About = () => {
   return (
-    <div className='border-t py-10 text-center m-auto'>
+    <div className='border-t py-10 text-center m-auto w-full '>
      <Heading title="ABOUT US"/>
-     <div className='flex flex-row gap-10 mt-10'>
+     <div className='flex flex-col items-center sm:flex-row gap-10 mt-10'>
       <div className="w-full sm:w-1/2">
           <img src={assets.about_img} alt=""  className='object-cover w-full h-full'/>
       </div>
@@ -24,7 +24,7 @@ const About = () => {
 
       <div className='my-20'>
         <Heading title="WHY CHOOSE US" />
-        <div className='flex mt-10'>
+        <div className='flex flex-col sm:flex-row mt-10'>
 
           <div className='p-16 border text-left'>
             <h6 className='font-bold mb-5'>Quality Assurance:</h6>
