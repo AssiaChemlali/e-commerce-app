@@ -18,7 +18,7 @@ const Cart = () => {
       <Heading title="YOUR CART"/>
 
       {cart.length >0 
-      ?(<div className="flex flex-col border-t mt-5">
+    && (<div className="flex flex-col border-t mt-5 mb-20">
         {cart?.map((item,index)=>{
           return(
             <div 
@@ -45,11 +45,9 @@ const Cart = () => {
             </div>
           )
         })}
-      </div>)
-       
-       :<p className='mt-10 capitalize text-red-400 text-xl  '> your cart is empty</p>}
+      </div>)   
+    }
       
-
      <CartTotal  />
      <Link 
         to='/place-order'

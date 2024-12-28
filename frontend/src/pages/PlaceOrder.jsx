@@ -7,12 +7,15 @@ import { Link } from 'react-router-dom'
 
 const PlaceOrder = () => {
   return (
-    <div className='border-t py-10'>
-      <Heading title="DELIVERY INFORMATION"/>
-      <div className="pt-5 flex  gap-5 w-full">
-
-        <Form/>
-        <div className="w-2/4">
+    <div className='border-t py-10 min-h-[80vh]'>
+      
+      <div className="pt-5 flex flex-col sm:flex-row gap-5 w-full">
+        <div className="w-full sm:w-[480px]">
+          <Heading title="DELIVERY INFORMATION"/>
+          <Form/>
+        </div>
+        
+        <div className="min-w-80">
           <CartTotal/>
           <PaymentMethod/>
            <Link 

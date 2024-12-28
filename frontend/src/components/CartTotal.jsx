@@ -8,7 +8,7 @@ const CartTotal = () => {
 
 
   return (
-    <div className='mt-20 w-full'>
+    <div className=' w-full'>
         <Heading title="CART TOTALS"/>
         <ul className='mb-5'>
           <li className='border-b py-2 flex capilatize text-sm'>
