@@ -13,17 +13,15 @@ const BestSellers = () => {
   },[])
 
   return (
-    <div className='flex  flex-col items-center my-10'>
+    <div className='flex flex-col items-center my-10'>
       <Heading  title="BEST SELLERS"/>
       <p className='text-base text-gray-600 text-center w-3/4 m-auto mb-10'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
-
-
       <div className='grid grid-cols-2 sm:grid-cols-4 gap-5 lg:grid-cols-5'>
         {bestSellers.map((product,index)=>{
           return(
-          <ProductItem 
-          key={index} 
-          product={product}/>
+              <ProductItem 
+              key={index} 
+              product={product}/>
           )
         })}
       </div>

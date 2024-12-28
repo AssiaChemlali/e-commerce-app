@@ -4,11 +4,21 @@ import { ShopContext } from '../context/ShopContext'
 
 const Orders = () => {
   const {products}=useContext(ShopContext)
+
+  function displayDate(timestamp ){
+    const date=new Date(timestamp)
+    const day=date.getDate()
+    const month=date.getMonth()
+    const year=date.getFullYear()
+    const fullDate=`${day} / ${month} / ${year}`
+    return fullDate
+
+  }
    
   return (
     <div className='border-t py-10'>
        <Heading title="MY ORDERS"/>
-       <div className="">
+       <div className="mt-10">
             {products.slice(0,4).map((product)=>{
               return(
                 <div className='flex flex-row gap-5 mb-5 border-b pb-5 items-center cursor-pointer'>
@@ -21,7 +31,7 @@ const Orders = () => {
                       <span>Size: {product.size}</span>
                     </p>
                    
-                    <p className='text-sm'>Date : <span className='text-gray-400'>{product.date}</span></p>
+                    <p className='text-sm'>Date : <span className='text-gray-400'>{displayDate(product.date)}</span></p>
                   </div>
 
                   <p className='ml-auto mr-auto flex items-center gap-1'>
@@ -31,8 +41,6 @@ const Orders = () => {
                   <button className='py-2 px-3 border  rounded '>
                     Track Order
                   </button>
-                 
-
                 </div>
               )
             })}
