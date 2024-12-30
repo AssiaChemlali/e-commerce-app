@@ -1,41 +1,47 @@
-import { createContext, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import { products } from "../assets/assets";
-import { useState } from "react";
-export const ShopContext=createContext()
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export const ShopContextProvider=(props)=>{
-  const currency="$"
-  const delivery_fee=10
-  const [openSearchBox,setOpenSearchBox]=useState(false)
-  const [searchValue,setSearchValue]=useState('')
-  const [cartItems,setCartItems]=useState([])
+export const ShopContext = createContext();
 
-  useEffect(()=>{
-    localStorage.setItem('cart',JSON.stringify(cartItems))
-  },[cartItems])
+export const ShopContextProvider = (props) => {
+  const currency = "$";
+  const delivery_fee = 10;
+  const [openSearchBox, setOpenSearchBox] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
-  useEffect(()=>{
-     const cart =localStorage.getItem('cart')
-     if(cart){
-      setCartItems('cart')
-     }
-     
-  },[])
+  // Initialize cartItems from localStorage or default to an empty array
+  const [cartItems, setCartItems] = useState(() => {
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    return Array.isArray(cart) ? cart : [];
+  });
 
-  function addToCart(id,size){
- 
-  if (size) {
-    const index = cartItems.findIndex(item => item.id === id && item.size === size);
+  // Save cartItems to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
 
-    const productItem = products.find(product => product._id === id);
+  const addToCart = (id, size) => {
+    if (!size) {
+      toast.error("Select Product size", {
+        position: "top-right",
+      });
+      return;
+    }
+
+    const index = Array.isArray(cartItems)
+      ? cartItems.findIndex((item) => item.id === id && item.size === size)
+      : -1;
+
+    const productItem = products.find((product) => product._id === id);
     if (index !== -1) {
-      setCartItems(prev => {
+      setCartItems((prev) => {
         const updatedItems = [...prev];
-        updatedItems[index]={
+        updatedItems[index] = {
           ...updatedItems[index],
-          quantity:updatedItems[index].quantity +1
-        }
-        
+          quantity: updatedItems[index].quantity + 1,
+        };
         return updatedItems;
       });
     } else if (productItem) {
@@ -47,57 +53,45 @@ export const ShopContextProvider=(props)=>{
         size: size,
         quantity: 1,
       };
-      setCartItems(prev => [...prev, newItem]);
+      setCartItems((prev) => [...prev, newItem]);
     }
-  } else {
-    toast.error("Select Product size", {
-      position: "top-right",
-    });
-  }
-  }
+  };
 
-  function updateQuantity(id,size,quantity){
-    const index = cartItems.findIndex(item => item.id === id && item.size === size);
+  const updateQuantity = (id, size, quantity) => {
+    if (!Array.isArray(cartItems)) return;
 
+    const index = cartItems.findIndex((item) => item.id === id && item.size === size);
     if (index !== -1) {
-      setCartItems(prev => {
+      setCartItems((prev) => {
         const updatedItems = [...prev];
-        updatedItems[index]={
+        updatedItems[index] = {
           ...updatedItems[index],
-          quantity:parseInt(quantity)
-        }
-
+          quantity: parseInt(quantity, 10), // Ensure quantity is a number
+        };
         return updatedItems;
       });
     }
+  };
 
+  const getCartCount = () => {
+    if (!Array.isArray(cartItems) || cartItems.length === 0) return 0;
 
+    return cartItems.reduce((result, item) => result + item.quantity, 0);
+  };
 
+  const getCartAmount = () => {
+    let subtotal = 0;
+    let total = 0;
 
-
-  }
-
-  const getCartCount=()=>{
-    const totalQuantity=cartItems.reduce((result,item)=>result + item.quantity,0)
-    return totalQuantity
-  }
-
-  function getCartAmout(){
-
-    let subtotal=0
-    let total=0
-
-    if(cartItems.length > 0){
-      subtotal=cartItems?.reduce((result,item)=>result + item.price * item.quantity,0)
-       total=subtotal + delivery_fee
-      
+    if (Array.isArray(cartItems) && cartItems.length > 0) {
+      subtotal = cartItems.reduce((result, item) => result + item.price * item.quantity, 0);
+      total = subtotal + delivery_fee;
     }
-    return {subtotal,total}
-  }
 
+    return { subtotal, total };
+  };
 
-
-  const value={
+  const value = {
     products,
     currency,
     openSearchBox,
@@ -109,13 +103,8 @@ export const ShopContextProvider=(props)=>{
     getCartCount,
     updateQuantity,
     delivery_fee,
-    getCartAmout
+    getCartAmount,
+  };
 
-  }
-
-  return(
-    <ShopContext.Provider value={value}>
-        {props.children}
-    </ShopContext.Provider>
-  )
-}
+  return <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>;
+};
