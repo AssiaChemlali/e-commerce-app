@@ -10,6 +10,18 @@ export const ShopContextProvider=(props)=>{
   const [searchValue,setSearchValue]=useState('')
   const [cartItems,setCartItems]=useState([])
 
+  useEffect(()=>{
+    localStorage.setItem('cart',JSON.stringify(cartItems))
+  },[cartItems])
+
+  useEffect(()=>{
+     const cart =localStorage.getItem('cart')
+     if(cart){
+      setCartItems('cart')
+     }
+     
+  },[])
+
   function addToCart(id,size){
  
   if (size) {
@@ -82,9 +94,7 @@ export const ShopContextProvider=(props)=>{
     }
     return {subtotal,total}
   }
-  useEffect(()=>{
-    
-  },[cartItems])
+
 
 
   const value={
