@@ -3,7 +3,7 @@ import React from 'react'
 const Form = () => {
   return (
    
-      <form className="flex flex-col gap-4  	">
+      <form className="flex flex-col gap-4">
         <div className='flex flex-row items-center justify-between  gap-3'>
           <input type="text" name="" id=""
           placeholder='First Name'  className='border border-gray-300 py-2 px-3 rounded w-full' required/>

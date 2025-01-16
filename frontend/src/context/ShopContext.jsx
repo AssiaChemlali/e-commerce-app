@@ -93,10 +93,8 @@ export const ShopContextProvider = (props) => {
 
 
   const removeFromCart=(id,size)=>{
-    console.log(cartItems)
-    const carts=cartItems.filter((item)=> item.id!==id && item.size!==size)
-    console.log(id,carts)
-    // setCartItems()
+    const carts=cartItems.filter((item)=> !(item.id===id && item.size===size))
+    setCartItems(carts)
 
   }
 
