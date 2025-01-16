@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import Heading from './Heading'
 import { ShopContext } from '../context/ShopContext'
 
-import { Link } from 'react-router-dom'
-const CartTotal = () => {
-  const {delivery_fee,currency,getCartAmout}=useContext(ShopContext)
 
+const CartTotal = () => {
+  const {delivery_fee,currency,getCartAmount}=useContext(ShopContext)
+
+  const {subtotal,total}= getCartAmount()
 
   return (
     <div className=' w-full'>
@@ -13,7 +14,7 @@ const CartTotal = () => {
         <ul className='mb-5'>
           <li className='border-b py-2 flex capilatize text-sm'>
             <span> Subtotal</span>
-            <span className='ml-auto'>{currency} {getCartAmout().subtotal}.00</span>
+            <span className='ml-auto'>{currency} {subtotal}.00</span>
           </li>
           <li className='border-b py-2 flex capilatize text-sm'>
             <span> Shipping Fee</span>
@@ -21,7 +22,7 @@ const CartTotal = () => {
           </li>
           <li className='border-b py-2 flex capilatize text-sm '>
             <span className='font-bold'> Total</span>
-            <span className='ml-auto font-bold'>{currency}{getCartAmout().total}.00</span>
+            <span className='ml-auto font-bold'>{currency}{total}.00</span>
           </li>
         </ul>
 

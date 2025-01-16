@@ -5,7 +5,7 @@ import CartTotal from '../components/CartTotal';
 import { assets } from '../assets/assets';
 import { Link } from 'react-router-dom';
 const Cart = () => {
-  const {cartItems,currency,updateQuantity}=useContext(ShopContext)
+  const {cartItems,currency,updateQuantity,removeFromCart}=useContext(ShopContext)
   const [cart,setCart]=useState([])
 
   useEffect(()=>{
@@ -40,7 +40,7 @@ const Cart = () => {
                               defaultValue={item.quantity}
                               />
                           
-                            <img src={assets.bin_icon} className='ml-auto w-5'/>
+                            <img src={assets.bin_icon} className='ml-auto w-5' onClick={()=>removeFromCart(item.id,item.size)}/>
                           
                           </div>
                         </div>

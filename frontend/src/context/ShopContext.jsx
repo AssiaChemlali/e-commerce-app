@@ -91,6 +91,15 @@ export const ShopContextProvider = (props) => {
     return { subtotal, total };
   };
 
+
+  const removeFromCart=(id,size)=>{
+    console.log(cartItems)
+    const carts=cartItems.filter((item)=> item.id!==id && item.size!==size)
+    console.log(id,carts)
+    // setCartItems()
+
+  }
+
   const value = {
     products,
     currency,
@@ -104,6 +113,7 @@ export const ShopContextProvider = (props) => {
     updateQuantity,
     delivery_fee,
     getCartAmount,
+    removeFromCart
   };
 
   return <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>;
